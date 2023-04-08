@@ -2,15 +2,29 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import "./Home.css";
 import Tshirt from "../Header/T-shirt/Tshirt";
+import Cart from "./Cart/Cart";
 
 const Home = () => {
   const products = useLoaderData();
   //console.log(products);
   const [cart, setCart] = useState([]);
 
-  const handlerBuyButton = (id) => {
-    setCart(id);
-    console.log(id);
+  const handlerBuyButton = (Tshirt) => {
+    const exist = cart.find((t) => t._id === Tshirt._id);
+    if (exist) {
+      return;
+    } else {
+      const newProduct = [...cart, Tshirt];
+      setCart(newProduct);
+    }
+
+    //console.log(Tshirt);
+  };
+
+  const removeButton = (id) => {
+    const remaining = cart.filter((pd) => pd._id !== id);
+    setCart(remaining);
+    //console.log(id);
   };
 
   return (
@@ -27,7 +41,7 @@ const Home = () => {
           ))}
         </div>
         <div className="cart">
-          <h3>cart summary: {cart}</h3>
+          <Cart cart={cart} removeButton={removeButton}></Cart>
         </div>
       </div>
     </div>
