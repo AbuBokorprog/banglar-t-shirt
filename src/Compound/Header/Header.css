@@ -1,0 +1,10 @@
+nav a{
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+
+}
+nav{
+    background-color: cornsilk;
+    padding: 20px 10px;
+}
