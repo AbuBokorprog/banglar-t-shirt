@@ -12,16 +12,16 @@ import Menu from "./Compound/Layout/Menu";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home></Home>,
+    element: <Menu></Menu>,
     children: [
       {
         path: "/",
-        element: <Menu></Menu>,
+        element: <Home></Home>,
+        loader: () => fetch("products.json"),
       },
       {
         path: "/order",
         element: <Order></Order>,
-        loader: () => fetch("products.json"),
       },
       {
         path: "/about",
